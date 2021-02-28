@@ -13,17 +13,17 @@ Buat Table
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
-$koneksi = mysql_connect($dbhost, $dbuser, $dbpass);
+$koneksi = mysqli_connect($dbhost, $dbuser, $dbpass);
 if(! $koneksi )
 {
-  die('Gagal Koneksi: ' . mysql_error());
+  die('Gagal Koneksi: ' . mysqli_error());
 }
 
 
 echo 'Koneksi Berhasil';
 
 
-mysql_select_db('iwan_antrian');
+mysqli_select_db('iwan_antrian');
 
 
 //buat table
@@ -35,10 +35,10 @@ $sql = 'CREATE TABLE adminx ('.
   ') ENGINE=InnoDB DEFAULT CHARSET=latin1;';
  
 
-$buattabel = mysql_query( $sql, $koneksi );
+$buattabel = mysqli_query( $sql, $koneksi );
 if(! $buattabel )
 	{
-  	die('Gagal Membuat Tabel: ' . mysql_error());
+  	die('Gagal Membuat Tabel: ' . mysqli_error());
 	}
 
 
@@ -51,10 +51,10 @@ if(! $buattabel )
 $sql = 'INSERT INTO adminx (kd, usernamex, passwordx, postdate) VALUES '.
 			'(\'1234567890\', \'admin\', \'admin\', \'2018-03-26 00:00:00\');';
  
-$buattabel = mysql_query( $sql, $koneksi );
+$buattabel = mysqli_query( $sql, $koneksi );
 if(! $buattabel )
 	{
-  	die('Gagal ENTRI DATA : ' . mysql_error());
+  	die('Gagal ENTRI DATA : ' . mysqli_error());
 	}
 
 
@@ -85,10 +85,10 @@ $sql = 'CREATE TABLE antrian ( '.
   ') ENGINE=InnoDB DEFAULT CHARSET=latin1;';
 
 
-$buattabel = mysql_query( $sql, $koneksi );
+$buattabel = mysqli_query( $sql, $koneksi );
 if(! $buattabel )
 	{
-  	die('Gagal Membuat Tabel: ' . mysql_error());
+  	die('Gagal Membuat Tabel: ' . mysqli_error());
 	}
 
 
@@ -122,5 +122,5 @@ echo "Tabel sukses dibuat\n";
 
 
 
-mysql_close($koneksi);
+mysqli_close($koneksi);
 ?>

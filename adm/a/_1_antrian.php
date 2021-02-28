@@ -101,9 +101,9 @@ else
 	if ($s == "proses")
 		{
 		//ketahui antrian
-		$qku = mysql_query("SELECT * FROM antrian ".
+		$qku = mysqli_query($koneksi, "SELECT * FROM antrian ".
 							"WHERE kd = '$kd'");
-		$rku = mysql_fetch_assoc($qku);
+		$rku = mysqli_fetch_assoc($qku);
 		$ku_noantrian = nosql($rku['noantrian']);
 		$ku_nama = balikin($rku['nama']);
 		$ku_alamat = balikin($rku['alamat']);
@@ -138,30 +138,30 @@ else
 							"ORDER BY postdate DESC";
 		$sqlresult = $sqlcount;
 	
-		$count = mysql_num_rows(mysql_query($sqlcount));
+		$count = mysqli_num_rows(mysqli_query($sqlcount));
 		$pages = $p->findPages($count, $limit);
-		$result = mysql_query("$sqlresult LIMIT ".$start.", ".$limit);
+		$result = mysqli_query($koneksi, "$sqlresult LIMIT ".$start.", ".$limit);
 		$target = "$filenya?utgl=$utgl&ubln=$ubln&uthn=$uthn";
 		$pagelist = $p->pageList($_GET['page'], $pages, $target);
-		$data = mysql_fetch_array($result);
+		$data = mysqli_fetch_array($result);
 	
 	
 		if ($count != 0)
 			{
 			//ketahui detail...
-			$qku1 = mysql_query("SELECT * FROM antrian ".
+			$qku1 = mysqli_query($koneksi, "SELECT * FROM antrian ".
 									"WHERE round(DATE_FORMAT(postdate, '%d')) = '$utgl' ".
 									"AND round(DATE_FORMAT(postdate, '%m')) = '$ubln' ".
 									"AND round(DATE_FORMAT(postdate, '%Y')) = '$uthn' ".
 									"AND proses = 'true'");
-			$tku1 = mysql_num_rows($qku1);
+			$tku1 = mysqli_num_rows($qku1);
 			
-			$qku2 = mysql_query("SELECT * FROM antrian ".
+			$qku2 = mysqli_query($koneksi, "SELECT * FROM antrian ".
 									"WHERE round(DATE_FORMAT(postdate, '%d')) = '$utgl' ".
 									"AND round(DATE_FORMAT(postdate, '%m')) = '$ubln' ".
 									"AND round(DATE_FORMAT(postdate, '%Y')) = '$uthn' ".
 									"AND berhasil = 'true'");
-			$tku2 = mysql_num_rows($qku2);
+			$tku2 = mysqli_num_rows($qku2);
 			
 					
 			
@@ -280,7 +280,7 @@ else
 	
 				</tr>';
 				}
-			while ($data = mysql_fetch_assoc($result));
+			while ($data = mysqli_fetch_assoc($result));
 	
 			echo '</table>
 			<table width="1000" border="0" cellspacing="0" cellpadding="3">

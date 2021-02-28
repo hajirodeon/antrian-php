@@ -15,16 +15,16 @@ require("../inc/koneksi.php");
 
 
 //hapus yang ada dulu...
-mysql_query("DROP DATABASE iwan_antrian");
+mysqli_query($koneksi, "DROP DATABASE iwan_antrian");
 
 //bikin database dulu...
-mysql_query("CREATE DATABASE iwan_antrian");
+mysqli_query($koneksi, "CREATE DATABASE iwan_antrian");
 
 
 
 
 
-mysql_query("CREATE TABLE `adminx` (
+mysqli_query($koneksi, "CREATE TABLE `adminx` (
   `kd` varchar(50) NOT NULL,
   `usernamex` varchar(50) NOT NULL,
   `passwordx` varchar(50) NOT NULL,
@@ -33,7 +33,7 @@ mysql_query("CREATE TABLE `adminx` (
 
 
 
-mysql_query("INSERT INTO `adminx` (`kd`, `usernamex`, `passwordx`, `postdate`) VALUES ('admin', 'admin', 'admin', '2018-02-22 00:00:00'); ");
+mysqli_query($koneksi, "INSERT INTO `adminx` (`kd`, `usernamex`, `passwordx`, `postdate`) VALUES ('admin', 'admin', 'admin', '2018-02-22 00:00:00'); ");
 
 
 
@@ -41,7 +41,7 @@ mysql_query("INSERT INTO `adminx` (`kd`, `usernamex`, `passwordx`, `postdate`) V
 
 
 /*
-mysql_query("CREATE TABLE `antrian` (
+mysqli_query($koneksi, "CREATE TABLE `antrian` (
   `kd` varchar(50) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `alamat` varchar(255) NOT NULL,

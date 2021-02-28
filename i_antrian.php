@@ -21,13 +21,13 @@ $filenya = "$sumber/i_antrian.php";
 if ($aksi == "tampil")
 	{
 	//ketahui jumlah total sehari...
-	$qku1 = mysql_query("SELECT * FROM antrian ".
+	$qku1 = mysqli_query($koneksi, "SELECT * FROM antrian ".
 							"WHERE round(DATE_FORMAT(postdate, '%d')) = '$tanggal' ".
 							"AND round(DATE_FORMAT(postdate, '%m')) = '$bulan' ".
 							"AND round(DATE_FORMAT(postdate, '%Y')) = '$tahun' ".
 							"ORDER BY round(noantrian) DESC");
-	$rku1 = mysql_fetch_assoc($qku1);
-	$tku1 = mysql_num_rows($qku1);
+	$rku1 = mysqli_fetch_assoc($qku1);
+	$tku1 = mysqli_num_rows($qku1);
 	$ku1_nomer = nosql($rku1['noantrian']); 
 
 	
@@ -108,18 +108,18 @@ if ($aksi == "simpan")
 
 
 	//cek
-	$qcc = mysql_query("SELECT * FROM antrian ".
+	$qcc = mysqli_query($koneksi, "SELECT * FROM antrian ".
 							"WHERE round(DATE_FORMAT(postdate, '%d')) = '$tanggal' ".
 							"AND round(DATE_FORMAT(postdate, '%m')) = '$bulan' ".
 							"AND round(DATE_FORMAT(postdate, '%Y')) = '$tahun' ".
 							"AND noantrian = '$noantrian'");
-	$tcc = mysql_num_rows($tcc);
+	$tcc = mysqli_num_rows($tcc);
 	
 	//jika null
 	if (empty($tcc))
 		{
 		//insert baru...
-		mysql_query("INSERT INTO antrian(kd, noantrian, proses, postdate) VALUES ".
+		mysqli_query($koneksi, "INSERT INTO antrian(kd, noantrian, proses, postdate) VALUES ".
 						"('$x', '$noantrian', 'false', '$today')");
 		}
 

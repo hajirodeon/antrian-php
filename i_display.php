@@ -25,12 +25,12 @@ if ($aksi == "baca")
 	//tampilkan yang terbaru, yang belum muncul display...
 	// setelah itu, set update, bila udah dimunculkan dilayar display...
 	
-	$qku = mysql_query("SELECT * FROM antrian ".
+	$qku = mysqli_query($koneksi, "SELECT * FROM antrian ".
 							"WHERE display = 'true' ".
 							"AND berhasil = 'false' ".
 							"ORDER BY postdate DESC");
-	$rku = mysql_fetch_assoc($qku);
-	$tku = mysql_num_rows($qku);
+	$rku = mysqli_fetch_assoc($qku);
+	$tku = mysqli_num_rows($qku);
 	
 	
 	//jika null, kasi info...
@@ -54,7 +54,7 @@ if ($aksi == "baca")
 		
 		
 		//update berhasil
-		mysql_query("UPDATE antrian SET berhasil = 'true' ".
+		mysqli_query($koneksi, "UPDATE antrian SET berhasil = 'true' ".
 						"WHERE kd = '$ku_kd'");
 		}
 
@@ -75,13 +75,13 @@ if ($aksi == "baca2")
 	//tampilkan yang terbaru, yang belum muncul display...
 	// setelah itu, set update, bila udah dimunculkan dilayar display...
 	
-	$qku = mysql_query("SELECT * FROM antrian ".
+	$qku = mysqli_query($koneksi, "SELECT * FROM antrian ".
 							"WHERE display = 'true' ".
 							"AND berhasil = 'false' ".
 							"AND solusi = '' ".
 							"ORDER BY postdate DESC");
-	$rku = mysql_fetch_assoc($qku);
-	$tku = mysql_num_rows($qku);	
+	$rku = mysqli_fetch_assoc($qku);
+	$tku = mysqli_num_rows($qku);	
 
 
 	//jika null, kasi info...

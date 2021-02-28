@@ -10,17 +10,17 @@ BUAT DATABASE
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
-$koneksi = mysql_connect($dbhost, $dbuser, $dbpass);
+$koneksi = mysqli_connect($dbhost, $dbuser, $dbpass);
 if(! $koneksi )
 {
-  die('Gagal Koneksi: ' . mysql_error());
+  die('Gagal Koneksi: ' . mysqli_error());
 }
 echo 'Koneksi Berhasil';
 $sql = 'CREATE Database iwan_antrian';
-$buatdb = mysql_query( $sql, $koneksi );
+$buatdb = mysqli_query( $sql, $koneksi );
 if(! $buatdb )
 {
-  die('Pembuatan database, gagal: ' . mysql_error());
+  die('Pembuatan database, gagal: ' . mysqli_error());
 }
 echo "Database 'iwan_antrian' berhasil dibuat\n";
-mysql_close($koneksi);?>
+mysqli_close($koneksi);?>
